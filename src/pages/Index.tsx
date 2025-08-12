@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { InputWithMic } from "@/components/ui/input-with-mic";
 import { Sparkles, Play } from "lucide-react";
-import heroImage from "@/assets/botflix-hero.jpg";
+import robotImage from "@/assets/botflix-robot.jpg";
 
 const Index = () => {
   const [mood, setMood] = useState("");
@@ -38,11 +38,10 @@ const Index = () => {
           <div className="mb-8 flex justify-center">
             <div className="relative">
               <img 
-                src={heroImage} 
-                alt="BotFlix Cinema Animation" 
+                src={robotImage} 
+                alt="BotFlix AI Robot Assistant" 
                 className="w-32 h-32 md:w-40 md:h-40 object-cover rounded-full shadow-glow animate-float"
               />
-              <div className="absolute inset-0 rounded-full bg-gradient-netflix opacity-20 animate-glow-pulse" />
             </div>
           </div>
 
