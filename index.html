@@ -1,46 +1,114 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>BotFlix - Seu Assistente Pessoal para Encontrar Filmes Perfeitos</title>
-    <meta name="description" content="Descubra filmes e séries perfeitos para seu humor com IA personalizada. BotFlix analisa suas preferências e oferece recomendações precisas de entretenimento." />
-    <meta name="author" content="BotFlix" />
-    <meta name="keywords" content="filmes, séries, recomendações, IA, inteligência artificial, entretenimento, cinema, streaming" />
-    <link rel="canonical" href="https://botflix.app" />
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BotFlix - Seu assistente pessoal para encontrar o filme perfeito</title>
+    <meta name="description" content="Encontre filmes perfeitos para seu humor com inteligência artificial. Recomendações personalizadas baseadas em como você está se sentindo.">
+    <link rel="canonical" href="/">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <main class="container">
+        <!-- Cinema Background -->
+        <div class="cinema-background"></div>
+        
+        <!-- Background Pattern -->
+        <div class="background-pattern"></div>
+        
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Hero Section -->
+            <div class="hero-section">
+                <!-- Robot Image -->
+                <div class="robot-container">
+                    <img 
+                        src="src/assets/botflix-robot.jpg" 
+                        alt="BotFlix AI Robot Assistant" 
+                        class="robot-image"
+                    />
+                </div>
 
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website" />
-    <meta property="og:title" content="BotFlix - Assistente IA para Recomendações de Filmes" />
-    <meta property="og:description" content="Encontre o filme perfeito com nossa IA personalizada. Recomendações baseadas no seu humor e preferências." />
-    <meta property="og:url" content="https://botflix.app" />
-    <meta property="og:site_name" content="BotFlix" />
-    <meta property="og:image" content="https://botflix.app/og-image.jpg" />
-    <meta property="og:image:width" content="1200" />
-    <meta property="og:image:height" content="630" />
+                <!-- Brand -->
+                <div class="brand-section">
+                    <h1 class="brand-title">BotFlix</h1>
+                    <p class="brand-subtitle">
+                        Seu assistente pessoal para encontrar o filme perfeito
+                    </p>
+                </div>
 
-    <!-- Twitter -->
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="BotFlix - Encontre Filmes Perfeitos com IA" />
-    <meta name="twitter:description" content="Recomendações personalizadas de filmes e séries baseadas no seu humor atual." />
-    <meta name="twitter:image" content="https://botflix.app/og-image.jpg" />
+                <!-- Search Card -->
+                <div class="search-card">
+                    <h2 class="search-title">
+                        <span class="sparkles">✨</span>
+                        O que você tá afim de assistir hoje?
+                    </h2>
+                    
+                    <div class="search-content">
+                        <div class="input-container">
+                            <input 
+                                type="text" 
+                                id="moodInput"
+                                placeholder="Digite como você está se sentindo ou o que quer assistir..."
+                                class="mood-input"
+                            />
+                            <button 
+                                id="micButton" 
+                                class="mic-button" 
+                                aria-label="Busca por voz"
+                                title="Busca por voz"
+                            >
+                                🎤
+                            </button>
+                        </div>
 
-    <!-- Schema.org structured data -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "WebApplication",
-      "name": "BotFlix",
-      "description": "Assistente pessoal com IA para encontrar filmes e séries perfeitos baseados no seu humor",
-      "url": "https://botflix.app",
-      "applicationCategory": "Entertainment",
-      "operatingSystem": "Web Browser"
-    }
-    </script>
-  </head>
+                        <!-- Examples -->
+                        <div class="examples">
+                            <p class="examples-title">Exemplos:</p>
+                            <ul class="examples-list">
+                                <li>• Quero algo engraçado para relaxar depois do trabalho</li>
+                                <li>• Estou procurando um thriller que me deixe na ponta da cadeira</li>
+                                <li>• Algo romântico para assistir com minha namorada</li>
+                            </ul>
+                        </div>
 
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
-  </body>
+                        <button 
+                            id="searchButton" 
+                            class="search-button"
+                            disabled
+                        >
+                            <span class="play-icon">▶</span>
+                            Encontrar Filmes Perfeitos
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Features -->
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <h3 class="feature-title">IA Personalizada</h3>
+                        <p class="feature-description">Recomendações baseadas no seu humor e preferências</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <h3 class="feature-title">Busca por Voz</h3>
+                        <p class="feature-description">Fale naturalmente sobre o que quer assistir</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <h3 class="feature-title">Catálogo Completo</h3>
+                        <p class="feature-description">Milhares de filmes e séries de todas as plataformas</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Ambient Light Effects -->
+        <div class="ambient-light-1"></div>
+        <div class="ambient-light-2"></div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
 </html>
