@@ -27,6 +27,12 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-gradient-dark relative overflow-hidden">
+      {/* Cinema Background */}
+      <div 
+        className="absolute inset-0 w-full h-full bg-cover bg-center opacity-30"
+        style={{ backgroundImage: 'url(/cinema-background.jpg)' }}
+      />
+      
       {/* Background Pattern */}
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,hsl(348_83%_47%_/_0.1)_0%,transparent_50%)]" />
       
