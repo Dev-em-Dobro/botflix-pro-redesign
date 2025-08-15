@@ -1,3 +1,30 @@
+.mood-textarea {
+    min-height: 60px;
+    resize: vertical;
+    font-family: inherit;
+    font-size: 1.1rem;
+    color: #fff;
+    border: 1px solid rgba(255,255,255,0.15);
+    box-shadow: 0 2px 16px 0 rgba(0,0,0,0.10);
+    padding: 1rem;
+    border-radius: 0.5rem;
+    width: 100%;
+    outline: none;
+}
+
+.mood-textarea:focus {
+    border-color: #e50914;
+    box-shadow: 0 0 0 3px rgba(229, 9, 20, 0.15);
+}
+
+@keyframes netflix-gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 100% 50%;
+  }
+}
 * {
     margin: 0;
     padding: 0;
