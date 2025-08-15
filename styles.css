@@ -176,7 +176,7 @@ body {
 
 .brand-subtitle {
     font-size: 1.25rem;
-    color: #a1a1aa;
+    color: #eeeeee;
     line-height: 1.6;
 }
 
@@ -242,7 +242,7 @@ body {
     width: 100%;
     padding: 1rem 4rem 1rem 1rem;
     background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.3);
     border-radius: 0.5rem;
     color: #fff;
     font-size: 1.125rem;
@@ -258,34 +258,14 @@ body {
 }
 
 .mood-input::placeholder {
-    color: #6b7280;
-}
-
-.mic-button {
-    position: absolute;
-    right: 0.5rem;
-    top: 50%;
-    transform: translateY(-50%);
-    background: none;
-    border: none;
-    color: #a1a1aa;
-    font-size: 1.25rem;
-    padding: 0.5rem;
-    border-radius: 0.25rem;
-    cursor: pointer;
-    transition: all 0.2s ease;
-}
-
-.mic-button:hover {
-    color: #e50914;
-    background: rgba(229, 9, 20, 0.1);
+    color: #ebebeb;
 }
 
 /* Examples */
 .examples {
     text-align: left;
     font-size: 0.875rem;
-    color: #a1a1aa;
+    color: #c5c5c5;
 }
 
 .examples-title {
