@@ -59,45 +59,6 @@ function handleSearch() {
     }
 }
 
-// Handle mic functionality
-function handleMicClick() {
-    console.log('Voice input activated');
-    
-    // Check if browser supports speech recognition
-    if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
-        const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-        const recognition = new SpeechRecognition();
-        
-        recognition.lang = 'pt-BR';
-        recognition.continuous = false;
-        recognition.interimResults = false;
-
-        // Show recording state
-        micButton.innerHTML = '🔴';
-        micButton.style.color = '#e50914';
-        
-        recognition.onresult = function(event) {
-            const transcript = event.results[0][0].transcript;
-            moodInput.value = transcript;
-            updateSearchButton();
-        };
-
-        recognition.onerror = function(event) {
-            console.error('Speech recognition error:', event.error);
-            alert('Erro no reconhecimento de voz. Tente novamente.');
-        };
-
-        recognition.onend = function() {
-            // Reset mic button
-            micButton.innerHTML = '🎤';
-            micButton.style.color = '#a1a1aa';
-        };
-
-        recognition.start();
-    } else {
-        alert('Seu navegador não suporta reconhecimento de voz.\nTente usar Chrome ou Edge.');
-    }
-}
 
 // Add some interactivity to feature cards
 document.addEventListener('DOMContentLoaded', function() {
