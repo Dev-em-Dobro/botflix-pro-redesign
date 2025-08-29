@@ -1,10 +1,10 @@
 // DOM Elements
 const moodInput = document.getElementById('moodInput');
 const searchButton = document.getElementById('searchButton');
-const micButton = document.getElementById('micButton');
+// ...código removido do microfone...
 
 // Initialize app
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     setupEventListeners();
     updateSearchButton();
 });
@@ -12,12 +12,12 @@ document.addEventListener('DOMContentLoaded', function() {
 // Event Listeners
 function setupEventListeners() {
     // Input change listener
-    moodInput.addEventListener('input', function() {
+    moodInput.addEventListener('input', function () {
         updateSearchButton();
     });
 
     // Enter key listener
-    moodInput.addEventListener('keypress', function(e) {
+    moodInput.addEventListener('keypress', function (e) {
         if (e.key === 'Enter') {
             handleSearch();
         }
@@ -26,8 +26,7 @@ function setupEventListeners() {
     // Search button listener
     searchButton.addEventListener('click', handleSearch);
 
-    // Mic button listener
-    micButton.addEventListener('click', handleMicClick);
+    // ...código removido do microfone...
 }
 
 // Update search button state
@@ -37,39 +36,90 @@ function updateSearchButton() {
 }
 
 // Handle search functionality
-function handleSearch() {
+async function handleSearch() {
     const mood = moodInput.value.trim();
-    
-    if (mood) {
-        console.log('Searching for movies with mood:', mood);
+
+    if (!mood) {
+        alert('Por favor, descreva o que você quer assistir!');
+        return;
+    }
+
+    // Show loading state
+    const originalText = searchButton.innerHTML;
+    searchButton.innerHTML = '<span style="animation: pulse 1s infinite;">🔍 Buscando...</span>';
+    searchButton.disabled = true;
+
+    const prompt = JSON.stringify({ userPrompt: mood });
+    console.log(prompt);
+
+    try {
+        // Fazer POST para o webhook do N8N
+        const response = await fetch('https://botflix3.app.n8n.cloud/webhook/f6e7d294-5206-450e-beae-8eedb34498f9', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: prompt
+        });
+
+        console.log(response);
         
-        // Show loading state
-        const originalText = searchButton.innerHTML;
-        searchButton.innerHTML = '<span style="animation: pulse 1s infinite;">🔍 Buscando...</span>';
-        searchButton.disabled = true;
-        
-        // Simulate search (replace with actual API call)
-        setTimeout(() => {
-            alert(`Procurando filmes para: "${mood}"\n\nEm breve, você verá recomendações personalizadas aqui!`);
-            
-            // Reset button
-            searchButton.innerHTML = originalText;
-            updateSearchButton();
-        }, 2000);
+
+        const data = await response.json();
+        console.log('Resposta do N8N:', data);
+
+        // Novo formato: data.results (TMDB padrão)
+        if (data && Array.isArray(data.results) && data.results.length > 0) {
+            const movies = data.results;
+            const moviesHTML = movies.map(movie => {
+                let posterUrl = movie.poster_path || '';
+                if (posterUrl && !/^https?:\/\//.test(posterUrl)) {
+                    posterUrl = `https://image.tmdb.org/t/p/w500${posterUrl}`;
+                }
+                return `
+                    <div class="movie-card">
+                        <div class="movie-poster">
+                            ${posterUrl ? `<img src="${posterUrl}" alt="${movie.title}">` : '<div class="no-poster">Sem imagem</div>'}
+                        </div>
+                        <div class="movie-info">
+                            <h4 class="movie-title">${movie.title}</h4>
+                            <p class="movie-overview">${movie.overview || 'Sem descrição disponível.'}</p>
+                            <p class="movie-rating">⭐ ${typeof movie.vote_average === 'number' ? movie.vote_average.toFixed(1) : 'N/A'} / 10</p>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+            // Exibe o resultado
+            const resultsDiv = document.getElementById('results');
+            const moviesGrid = document.getElementById('moviesGrid');
+            if (resultsDiv && moviesGrid) {
+                resultsDiv.style.display = 'block';
+                moviesGrid.innerHTML = moviesHTML;
+            } else {
+                alert('Não foi possível exibir o resultado. Elementos não encontrados.');
+            }
+        } else {
+            alert('Nenhum filme encontrado para sua busca.');
+        }
+    } catch (error) {
+        console.error('Erro ao fazer a requisição:', error);
+        alert('Erro ao buscar filmes. Tente novamente.');
+    } finally {
+        // Reset button
+        searchButton.innerHTML = originalText;
+        updateSearchButton();
     }
 }
-
-
 // Add some interactivity to feature cards
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     const featureCards = document.querySelectorAll('.feature-card');
-    
+
     featureCards.forEach(card => {
-        card.addEventListener('mouseenter', function() {
+        card.addEventListener('mouseenter', function () {
             this.style.transform = 'scale(1.05) translateY(-5px)';
         });
-        
-        card.addEventListener('mouseleave', function() {
+
+        card.addEventListener('mouseleave', function () {
             this.style.transform = 'scale(1) translateY(0)';
         });
     });
@@ -83,9 +133,9 @@ function addTypingEffect() {
         "Descreva seu humor atual...",
         "O que combina com seu dia hoje?"
     ];
-    
+
     let currentIndex = 0;
-    
+
     setInterval(() => {
         if (!moodInput.value) {
             moodInput.placeholder = placeholders[currentIndex];

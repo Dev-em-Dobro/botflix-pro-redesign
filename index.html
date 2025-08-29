@@ -9,6 +9,7 @@
     content="Encontre filmes perfeitos para seu humor com inteligência artificial. Recomendações personalizadas baseadas em como você está se sentindo.">
   <link rel="canonical" href="/">
   <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="movies.css">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 
@@ -26,15 +27,11 @@
     <div class="main-content">
       <!-- Hero Section -->
       <div class="hero-section">
-        <!-- Robot Image -->
-        <!-- <div class="robot-container">
-          <img src="src/assets/botflix-robot.jpg" alt="BotFlix AI Robot Assistant" class="robot-image" />
-        </div> -->
 
         <!-- Brand -->
         <div class="brand-section">
           <div class="container-logo">
-            <img src="src/assets/botflix-robot.jpg" alt="BotFlix AI Robot Assistant" class="robot-image" />
+            <img src="src/images/botflix-robot.jpg" alt="BotFlix AI Robot Assistant" class="robot-image" />
             <h1 class="brand-title">BotFlix</h1>
           </div>
 
@@ -70,6 +67,12 @@
               Encontrar Filmes Perfeitos
             </button>
           </div>
+        </div>
+
+        <!-- Resultados dos filmes -->
+        <div id="results" style="display:none; margin-top: 2rem;">
+          <h2>Filmes perfeitos pra você</h2>
+          <div id="moviesGrid" class="movies-grid"></div>
         </div>
 
         <!-- Features -->
