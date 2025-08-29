@@ -63,20 +63,26 @@ async function handleSearch() {
         });
 
         console.log(response);
-        
+
 
         const data = await response.json();
         console.log('Resposta do N8N:', data);
 
         // Novo formato: data.results (TMDB padrão)
         if (data && Array.isArray(data.results) && data.results.length > 0) {
-            const movies = data.results;
-            const moviesHTML = movies.map(movie => {
-                let posterUrl = movie.poster_path || '';
-                if (posterUrl && !/^https?:\/\//.test(posterUrl)) {
-                    posterUrl = `https://image.tmdb.org/t/p/w500${posterUrl}`;
-                }
-                return `
+            const movie = data.results[0];
+
+            let posterUrl = movie.poster_path || '';
+            if (posterUrl && !/^https?:\/\//.test(posterUrl)) {
+                posterUrl = `https://image.tmdb.org/t/p/w500${posterUrl}`;
+            }
+
+            // Exibe o resultado
+            const resultsDiv = document.getElementById('results');
+            const moviesGrid = document.getElementById('moviesGrid');
+            if (resultsDiv && moviesGrid) {
+                resultsDiv.style.display = 'block';
+                moviesGrid.innerHTML = `
                     <div class="movie-card">
                         <div class="movie-poster">
                             ${posterUrl ? `<img src="${posterUrl}" alt="${movie.title}">` : '<div class="no-poster">Sem imagem</div>'}
@@ -88,13 +94,6 @@ async function handleSearch() {
                         </div>
                     </div>
                 `;
-            }).join('');
-            // Exibe o resultado
-            const resultsDiv = document.getElementById('results');
-            const moviesGrid = document.getElementById('moviesGrid');
-            if (resultsDiv && moviesGrid) {
-                resultsDiv.style.display = 'block';
-                moviesGrid.innerHTML = moviesHTML;
             } else {
                 alert('Não foi possível exibir o resultado. Elementos não encontrados.');
             }
