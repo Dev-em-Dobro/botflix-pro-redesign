@@ -18,8 +18,11 @@ function setupEventListeners() {
 
     // Enter key listener
     moodInput.addEventListener('keypress', function (e) {
-        if (e.key === 'Enter') {
-            handleSearch();
+        if (e.key === 'Enter' && !e.shiftKey) {
+            e.preventDefault();
+            if (!searchButton.disabled) {
+                handleSearch();
+            }
         }
     });
 
@@ -79,7 +82,7 @@ async function handleSearch() {
 
             // Exibe o resultado
             const resultsDiv = document.getElementById('results');
-            const moviesGrid = document.getElementById('moviesGrid');
+            const moviesGrid = document.getElementById('movies-grid');
             if (resultsDiv && moviesGrid) {
                 resultsDiv.style.display = 'block';
                 moviesGrid.innerHTML = `
@@ -109,20 +112,6 @@ async function handleSearch() {
         updateSearchButton();
     }
 }
-// Add some interactivity to feature cards
-document.addEventListener('DOMContentLoaded', function () {
-    const featureCards = document.querySelectorAll('.feature-card');
-
-    featureCards.forEach(card => {
-        card.addEventListener('mouseenter', function () {
-            this.style.transform = 'scale(1.05) translateY(-5px)';
-        });
-
-        card.addEventListener('mouseleave', function () {
-            this.style.transform = 'scale(1) translateY(0)';
-        });
-    });
-});
 
 // Add typing effect to placeholder (optional enhancement)
 function addTypingEffect() {
