@@ -1,5 +1,5 @@
 // DOM Elements
-const mood-input = document.getElementById('mood-input');
+const moodInput = document.getElementById('mood-input');
 const searchButton = document.getElementById('search-button');
 // ...código removido do microfone...
 
@@ -12,12 +12,12 @@ document.addEventListener('DOMContentLoaded', function () {
 // Event Listeners
 function setupEventListeners() {
     // Input change listener
-    mood-input.addEventListener('input', function () {
+    moodInput.addEventListener('input', function () {
         updateSearchButton();
     });
 
     // Enter key listener
-    mood-input.addEventListener('keypress', function (e) {
+    moodInput.addEventListener('keypress', function (e) {
         if (e.key === 'Enter' && !e.shiftKey) {
             e.preventDefault();
             if (!searchButton.disabled) {
@@ -34,13 +34,13 @@ function setupEventListeners() {
 
 // Update search button state
 function updateSearchButton() {
-    const hasText = mood-input.value.trim().length > 0;
+    const hasText = moodInput.value.trim().length > 0;
     searchButton.disabled = !hasText;
 }
 
 // Handle search functionality
 async function handleSearch() {
-    const mood = mood-input.value.trim();
+    const mood = moodInput.value.trim();
 
     if (!mood) {
         alert('Por favor, descreva o que você quer assistir!');
@@ -53,7 +53,6 @@ async function handleSearch() {
     searchButton.disabled = true;
 
     const prompt = JSON.stringify({ userPrompt: mood });
-    console.log(prompt);
 
     try {
         // Fazer POST para o webhook do N8N
@@ -65,11 +64,8 @@ async function handleSearch() {
             body: prompt
         });
 
-        console.log(response);
-
-
         const data = await response.json();
-        console.log('Resposta do N8N:', data);
+
 
         // Novo formato: data.results (TMDB padrão)
         if (data && Array.isArray(data.results) && data.results.length > 0) {
@@ -114,23 +110,23 @@ async function handleSearch() {
 }
 
 // Add typing effect to placeholder (optional enhancement)
-function addTypingEffect() {
-    const placeholders = [
-        "Digite como você está se sentindo...",
-        "Que tipo de filme você quer assistir?",
-        "Descreva seu humor atual...",
-        "O que combina com seu dia hoje?"
-    ];
+// function addTypingEffect() {
+//     const placeholders = [
+//         "Digite como você está se sentindo...",
+//         "Que tipo de filme você quer assistir?",
+//         "Descreva seu humor atual...",
+//         "O que combina com seu dia hoje?"
+//     ];
 
-    let currentIndex = 0;
+//     let currentIndex = 0;
 
-    setInterval(() => {
-        if (!mood-input.value) {
-            mood-input.placeholder = placeholders[currentIndex];
-            currentIndex = (currentIndex + 1) % placeholders.length;
-        }
-    }, 3000);
-}
+//     setInterval(() => {
+//         if (!moodInput.value) {
+//             moodInput.placeholder = placeholders[currentIndex];
+//             currentIndex = (currentIndex + 1) % placeholders.length;
+//         }
+//     }, 3000);
+// }
 
 // Initialize typing effect
-addTypingEffect();
+//addTypingEffect();
