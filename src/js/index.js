@@ -1,6 +1,6 @@
 // DOM Elements
-const moodInput = document.getElementById('moodInput');
-const searchButton = document.getElementById('searchButton');
+const mood-input = document.getElementById('mood-input');
+const searchButton = document.getElementById('search-button');
 // ...código removido do microfone...
 
 // Initialize app
@@ -12,12 +12,12 @@ document.addEventListener('DOMContentLoaded', function () {
 // Event Listeners
 function setupEventListeners() {
     // Input change listener
-    moodInput.addEventListener('input', function () {
+    mood-input.addEventListener('input', function () {
         updateSearchButton();
     });
 
     // Enter key listener
-    moodInput.addEventListener('keypress', function (e) {
+    mood-input.addEventListener('keypress', function (e) {
         if (e.key === 'Enter' && !e.shiftKey) {
             e.preventDefault();
             if (!searchButton.disabled) {
@@ -34,13 +34,13 @@ function setupEventListeners() {
 
 // Update search button state
 function updateSearchButton() {
-    const hasText = moodInput.value.trim().length > 0;
+    const hasText = mood-input.value.trim().length > 0;
     searchButton.disabled = !hasText;
 }
 
 // Handle search functionality
 async function handleSearch() {
-    const mood = moodInput.value.trim();
+    const mood = mood-input.value.trim();
 
     if (!mood) {
         alert('Por favor, descreva o que você quer assistir!');
@@ -125,8 +125,8 @@ function addTypingEffect() {
     let currentIndex = 0;
 
     setInterval(() => {
-        if (!moodInput.value) {
-            moodInput.placeholder = placeholders[currentIndex];
+        if (!mood-input.value) {
+            mood-input.placeholder = placeholders[currentIndex];
             currentIndex = (currentIndex + 1) % placeholders.length;
         }
     }, 3000);

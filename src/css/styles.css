@@ -2,7 +2,6 @@ body {
   background: #000;
   color: #fff;
   font-family: "Inter", system-ui, sans-serif;
-  overflow-x: hidden;
 }
 
 .container {
@@ -26,11 +25,11 @@ body {
 }
 
 /* Brand Section */
-.brand-section {
+.brand-header {
   padding: 24px 0;
 }
 
-.brand-section .container-logo {
+.brand-header .container-logo {
   margin-bottom: 30px;
   display: flex;
   align-items: center;
